@@ -1,17 +1,43 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Geolocation</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-list>
+    <ion-item>
+      <ion-label>Enable High Accuary</ion-label>
+      <ion-toggle #t1
+      [checked]="enableHighAccuracy"
+      (ionChange)="onHighAccuracyChange(t1.checked)"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button block (click)="getLocation()">Get Location</button>
+
+  <ion-card *ngIf="isLocAvail">
+    <ion-card-header>
+      <ion-icon name="pin"></ion-icon>
+      Coordinates
+    </ion-card-header>
+    <ion-card-content>
+      {{loc_lat}}, {{loc_lng}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="isLocAvail&&rev_geo">
+    <ion-card-header>
+      <i class="fa fa-map-signs"></i>
+      Address
+    </ion-card-header>
+    <ion-card-content>
+      {{rev_geo}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="isLocError&&!isLocAvail">
+    <ion-icon name="warning"></ion-icon>
+    Unabled to get your location information.
+  </ion-card>
 </ion-content>
