@@ -1,31 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
 	selector: 'page-about',
 	templateUrl: 'about.html',
-	providers: [BarcodeScanner, Camera]
+	providers: [Camera]
 })
 export class AboutPage {
 	imgSrc: string;
-	constructor(public navCtrl: NavController, private barcodeScanner: BarcodeScanner, private camera: Camera) {
-	}
-
-	click_qr() {
-		this.barcodeScanner.scan()
-			.then((result) => {
-				alert(
-					"We got a barcode\n" +
-					"Result: " + result.text + "\n" +
-					"Format: " + result.format + "\n" +
-					"Cancelled: " + result.cancelled
-				)
-			})
-			.catch((error) => {
-				alert(error);
-			})
+	constructor(public navCtrl: NavController, private camera: Camera) {
 	}
 
 	click_camera() {

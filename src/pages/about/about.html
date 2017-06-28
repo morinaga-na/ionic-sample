@@ -1,15 +1,14 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      カメラ
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h1>Scan</h1>
-  <button block (click)="click_qr()" ion-button>QR</button>
-  <button block (click)="click_camera()" ion-button>Camera</button>
+  <h1>カメラ</h1>
+  <button block (click)="click_camera()" ion-button>カメラ起動</button>
   <div *ngIf="imgSrc">
     <img src="{{imgSrc}}" alt="" class="img-taken">
   </div>
