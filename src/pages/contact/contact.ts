@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { Flashlight } from '@ionic-native/flashlight';
 
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html',
-  providers: [BarcodeScanner, Flashlight]
+  providers: [BarcodeScanner]
 })
 export class ContactPage {
 
-  constructor(public navCtrl: NavController, private barcodeScanner: BarcodeScanner, private flashlight: Flashlight) {
+  constructor(public navCtrl: NavController, private barcodeScanner: BarcodeScanner) {
 
   }
 
   click_qr() {
-    this.barcodeScanner.scan()
+    this.barcodeScanner.scan({
+            showTorchButton : true,
+        })
         .then((result) => {
           alert(
               "バーコード取得\n" +
@@ -28,14 +29,4 @@ export class ContactPage {
           alert(error);
         })
   }
-  click_flash_on() {
-      console.log(alert(JSON.stringify(this.flashlight.isSwitchedOn())));
-      alert(this.flashlight.isSwitchedOn());
-      // alert(this.flashlight.switchOn() );
-  }
-
-  click_flash_off() {
-      this.flashlight.switchOff();
-  }
-
 }
