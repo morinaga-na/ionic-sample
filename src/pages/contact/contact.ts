@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Flashlight } from '@ionic-native/flashlight';
 
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html',
-  providers: [BarcodeScanner]
+  providers: [BarcodeScanner, Flashlight]
 })
 export class ContactPage {
 
-  constructor(public navCtrl: NavController, private barcodeScanner: BarcodeScanner) {
+  constructor(public navCtrl: NavController, private barcodeScanner: BarcodeScanner, private flashlight: Flashlight) {
 
   }
 
@@ -26,6 +27,15 @@ export class ContactPage {
         .catch((error) => {
           alert(error);
         })
+  }
+  click_flash_on() {
+      console.log(alert(JSON.stringify(this.flashlight.isSwitchedOn())));
+      alert(this.flashlight.isSwitchedOn());
+      // alert(this.flashlight.switchOn() );
+  }
+
+  click_flash_off() {
+      this.flashlight.switchOff();
   }
 
 }
